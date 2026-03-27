@@ -1,0 +1,13 @@
+.git
+.venv
+__pycache__
+*.pyc
+.env
+data/input/*
+data/processed/*
+logs/*
+tests/
+ARCHITECTURE.md
+GEMINI.md
+README.md
+.python-version

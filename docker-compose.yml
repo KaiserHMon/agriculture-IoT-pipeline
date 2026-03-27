@@ -1,0 +1,10 @@
+services:
+  ingestion:
+    build: .
+    env_file: .env
+    volumes:
+      - ./data/input:/app/data/input
+      - ./data/processed:/app/data/processed
+      - ./logs:/app/logs
+    # You can override the command here if needed
+    # command: uv run pytest
