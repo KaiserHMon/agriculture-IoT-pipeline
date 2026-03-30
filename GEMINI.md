@@ -8,18 +8,25 @@ This document serves as the project memory and roadmap for future Gemini CLI ses
 ## 🛠️ Tech Stack & Environment
 - **Environment:** `uv` (managed via `pyproject.toml`)
 - **Containerization:** Docker & Docker Compose
-- **Cloud:** AWS (S3, Athena)
-- **Transformation:** dbt (Data Build Tool)
+- **Cloud:** AWS (S3, Lambda, Glue, Athena)
+- **Transformation (B->S):** AWS Lambda (Python + awswrangler) - *Schema-Agnostic Wide Table Approach*.
+- **Transformation (S->G):** dbt (Data Build Tool) + Athena.
 
 ## 🏗️ Architecture (Medallion Pattern)
-- **Bronze (Raw):** Landing zone in S3 for CSV and XLSX files.
-- **Silver (Cleaned):** Transformation into Parquet with type-casting and schema enforcement.
-- **Gold (Curated):** ML-ready aggregated datasets.
+- **Bronze (Raw):** Landing zone en S3 (`segundohardoy-data-raw-...`) para CSV y XLSX.
+- **Silver (Cleaned):** Transformación mediante **AWS Lambda** a formato Parquet (Snappy). Soporta "Wide Tables" para capturar múltiples métricas (pH, humedad, etc.) dinámicamente.
+- **Gold (Curated):** ML-ready agregados usando dbt sobre Athena.
 
 ## 🚀 Key Decisions
-### 1. S3 Partitioning Strategy
-We use **Hive-style partitioning** based on the data's internal `timestamp` column (Gold Standard). If missing, it falls back to the file's modification date.
-- Path Format: `s3://bucket/bronze/prefix/year=YYYY/month=MM/day=DD/filename.ext`
+### 1. Schema-Agnostic Silver Layer
+Se implementó una lógica flexible en la Lambda que limpia nombres de columnas (snake_case) y acepta cualquier métrica numérica, evitando fallos por cambios en el origen.
+
+### 2. Data Identity Requirement
+Se decidió procesar únicamente archivos con identificadores claros (`sensor_id` o `farm_id`). Archivos sin identidad estructural (ej. Excel simples de una sola métrica sin ID) fueron excluidos para mantener la integridad del Data Lake.
+
+### 3. Resource Optimization
+La Lambda fue optimizada a **512MB RAM** y **60s Timeout** para manejar la carga inicial de `awswrangler` y el procesamiento de archivos Excel pesados.
+
 
 ### 2. Configuration & Security
 - **`.env` (Mandatory):** Stores sensitive credentials: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_S3_BUCKET` (prevents exposing Account ID).

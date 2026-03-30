@@ -1,0 +1,60 @@
+2026-03-30 12:05:11 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:05:11 - agriculture_iot - INFO - Found 10 files to upload.
+2026-03-30 12:05:12 - agriculture_iot - INFO - Successfully uploaded Environment Humidity.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Environment Humidity.xlsx
+2026-03-30 12:05:12 - agriculture_iot - INFO - Moved Environment Humidity.xlsx to data/processed
+2026-03-30 12:05:13 - agriculture_iot - INFO - Successfully uploaded Environment Light Intensity.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Environment Light Intensity.xlsx
+2026-03-30 12:05:13 - agriculture_iot - INFO - Moved Environment Light Intensity.xlsx to data/processed
+2026-03-30 12:05:13 - agriculture_iot - INFO - Successfully uploaded Environment Temperature.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Environment Temperature.xlsx
+2026-03-30 12:05:13 - agriculture_iot - INFO - Moved Environment Temperature.xlsx to data/processed
+2026-03-30 12:05:14 - agriculture_iot - INFO - Successfully uploaded precision-farm-sensor-readings.csv to bronze/agriculture_sensors/year=2024/month=05/day=01/precision-farm-sensor-readings.csv
+2026-03-30 12:05:14 - agriculture_iot - INFO - Moved precision-farm-sensor-readings.csv to data/processed
+2026-03-30 12:05:14 - agriculture_iot - INFO - Successfully uploaded Smart_Farming_Crop_Yield_2024.csv to bronze/agriculture_sensors/year=2024/month=03/day=19/Smart_Farming_Crop_Yield_2024.csv
+2026-03-30 12:05:14 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
+2026-03-30 12:05:15 - agriculture_iot - INFO - Successfully uploaded Soil Moisture.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Soil Moisture.xlsx
+2026-03-30 12:05:15 - agriculture_iot - INFO - Moved Soil Moisture.xlsx to data/processed
+2026-03-30 12:05:15 - agriculture_iot - INFO - Successfully uploaded Soil pH.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Soil pH.xlsx
+2026-03-30 12:05:15 - agriculture_iot - INFO - Moved Soil pH.xlsx to data/processed
+2026-03-30 12:05:16 - agriculture_iot - INFO - Successfully uploaded Soil Temperature.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Soil Temperature.xlsx
+2026-03-30 12:05:16 - agriculture_iot - INFO - Moved Soil Temperature.xlsx to data/processed
+2026-03-30 12:05:16 - agriculture_iot - INFO - Successfully uploaded Solar Panel Battery Voltage.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Solar Panel Battery Voltage.xlsx
+2026-03-30 12:05:16 - agriculture_iot - INFO - Moved Solar Panel Battery Voltage.xlsx to data/processed
+2026-03-30 12:05:16 - agriculture_iot - INFO - Successfully uploaded Water TDS.xlsx to bronze/agriculture_sensors/year=2026/month=03/day=27/Water TDS.xlsx
+2026-03-30 12:05:16 - agriculture_iot - INFO - Moved Water TDS.xlsx to data/processed
+2026-03-30 12:05:16 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:05:16 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 12:18:25 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:18:25 - agriculture_iot - INFO - No new files found in data/input to upload.
+2026-03-30 12:18:25 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:18:25 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 12:25:42 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:25:42 - agriculture_iot - INFO - No new files found in data/input to upload.
+2026-03-30 12:25:42 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:25:42 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 12:33:41 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:33:41 - agriculture_iot - INFO - Found 1 files to upload.
+2026-03-30 12:33:42 - agriculture_iot - INFO - Successfully uploaded precision-farm-sensor-readings.csv to bronze/agriculture_sensors/year=2024/month=05/day=01/precision-farm-sensor-readings.csv
+2026-03-30 12:33:42 - agriculture_iot - INFO - Moved precision-farm-sensor-readings.csv to data/processed
+2026-03-30 12:33:42 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:33:42 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 12:41:43 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:41:43 - agriculture_iot - INFO - Found 1 files to upload.
+2026-03-30 12:41:44 - agriculture_iot - INFO - Successfully uploaded Smart_Farming_Crop_Yield_2024.csv to bronze/agriculture_sensors/year=2024/month=03/day=19/Smart_Farming_Crop_Yield_2024.csv
+2026-03-30 12:41:44 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
+2026-03-30 12:41:44 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:41:44 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 12:53:56 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:53:56 - agriculture_iot - INFO - Found 2 files to upload.
+2026-03-30 12:53:57 - agriculture_iot - INFO - Successfully uploaded precision-farm-sensor-readings.csv to bronze/agriculture_sensors/year=2024/month=05/day=01/precision-farm-sensor-readings.csv
+2026-03-30 12:53:57 - agriculture_iot - INFO - Moved precision-farm-sensor-readings.csv to data/processed
+2026-03-30 12:53:58 - agriculture_iot - INFO - Successfully uploaded Smart_Farming_Crop_Yield_2024.csv to bronze/agriculture_sensors/year=2024/month=03/day=19/Smart_Farming_Crop_Yield_2024.csv
+2026-03-30 12:53:58 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
+2026-03-30 12:53:58 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:53:58 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 12:57:31 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 12:57:31 - agriculture_iot - INFO - Found 2 files to upload.
+2026-03-30 12:57:32 - agriculture_iot - INFO - Successfully uploaded precision-farm-sensor-readings.csv to bronze/agriculture_sensors/year=2024/month=05/day=01/precision-farm-sensor-readings.csv
+2026-03-30 12:57:32 - agriculture_iot - INFO - Moved precision-farm-sensor-readings.csv to data/processed
+2026-03-30 12:57:33 - agriculture_iot - INFO - Successfully uploaded Smart_Farming_Crop_Yield_2024.csv to bronze/agriculture_sensors/year=2024/month=03/day=19/Smart_Farming_Crop_Yield_2024.csv
+2026-03-30 12:57:33 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
+2026-03-30 12:57:33 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 12:57:33 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.

@@ -5,10 +5,7 @@ import yaml
 import pandas as pd
 from datetime import datetime
 from utils.s3_client import S3Client
-
-# Configure logging
-logging.basicConfig(level=logging.INFO, format="%(asctime)s - %(levelname)s - %(message)s")
-logger = logging.getLogger(__name__)
+from utils.logger import logger
 
 def load_config(config_path="config/settings.yaml"):
     with open(config_path, "r") as f:
