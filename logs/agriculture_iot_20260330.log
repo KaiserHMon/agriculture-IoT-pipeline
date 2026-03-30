@@ -58,3 +58,19 @@
 2026-03-30 12:57:33 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
 2026-03-30 12:57:33 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
 2026-03-30 12:57:33 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 14:00:50 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 14:00:50 - agriculture_iot - INFO - Found 2 files to upload.
+2026-03-30 14:00:51 - agriculture_iot - INFO - Successfully uploaded precision-farm-sensor-readings.csv to bronze/agriculture_sensors/year=2024/month=05/day=01/precision-farm-sensor-readings.csv
+2026-03-30 14:00:51 - agriculture_iot - INFO - Moved precision-farm-sensor-readings.csv to data/processed
+2026-03-30 14:00:52 - agriculture_iot - INFO - Successfully uploaded Smart_Farming_Crop_Yield_2024.csv to bronze/agriculture_sensors/year=2024/month=03/day=19/Smart_Farming_Crop_Yield_2024.csv
+2026-03-30 14:00:52 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
+2026-03-30 14:00:52 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 14:00:52 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
+2026-03-30 14:05:03 - agriculture_iot - INFO - === Iniciando Ejecución del Pipeline E2E ===
+2026-03-30 14:05:03 - agriculture_iot - INFO - Found 2 files to upload.
+2026-03-30 14:05:04 - agriculture_iot - INFO - Successfully uploaded precision-farm-sensor-readings.csv to bronze/agriculture_sensors/year=2024/month=05/day=01/precision-farm-sensor-readings.csv
+2026-03-30 14:05:04 - agriculture_iot - INFO - Moved precision-farm-sensor-readings.csv to data/processed
+2026-03-30 14:05:05 - agriculture_iot - INFO - Successfully uploaded Smart_Farming_Crop_Yield_2024.csv to bronze/agriculture_sensors/year=2024/month=03/day=19/Smart_Farming_Crop_Yield_2024.csv
+2026-03-30 14:05:05 - agriculture_iot - INFO - Moved Smart_Farming_Crop_Yield_2024.csv to data/processed
+2026-03-30 14:05:05 - agriculture_iot - INFO - === Ejecución completada exitosamente ===
+2026-03-30 14:05:05 - agriculture_iot - INFO - Verifica los resultados en tu bucket de S3 Bronze.
