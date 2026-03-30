@@ -8,8 +8,8 @@ We follow the **Medallion Architecture** (Bronze, Silver, Gold). For more detail
 ## 🚀 Stack
 - **Environment Management:** [uv](https://github.com/astral-sh/uv)
 - **Languages:** Python
-- **Cloud/Data:** AWS S3 (Data Lake), AWS Athena
-- **Transformation:** dbt (Data Build Tool)
+- **Storage:** AWS S3 (Data Lake), AWS Glue Data Catalog
+- **Transformation:** AWS Lambda, AWS Athena, dbt (Data Build Tool)
 - **Libs:** boto3, pandas, openpyxl, pyyaml, pytest
 
 ## 🛠️ Development (with uv)
