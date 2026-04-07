@@ -7,30 +7,34 @@ We follow the **Medallion Architecture** to ensure data quality and traceability
 
 | Tier | Format | Description |
 | :--- | :--- | :--- |
-| **Bronze (Raw)** | CSV/XLSX | Immutable landing zone for source data. No transformations. |
-| **Silver (Cleaned)** | Parquet | Type casting, deduplication, and schema enforcement using **AWS Lambda**. |
-| **Gold (Curated)** | Parquet | Aggregated, ML-ready datasets (e.g., Daily Soil Moisture Averages) using **Athena/dbt**. |
+| **Bronze (Raw)** | CSV/XLSX | Immutable landing zone. Particionado por `year/month/day` de carga o de dato. |
+| **Silver (Cleaned)** | Parquet | Limpieza, tipado y particionamiento por `year/month/day` del dato vía **AWS Lambda**. |
+| **Gold (Curated)** | Parquet | Agregados y datasets listos para ML usando **Athena + dbt**. |
 
 ## 2. Technology Stack
-- **Ingestion:** Python (boto3) for uploading local files to S3.
-- **Storage:** AWS S3 (Data Lake) with separate buckets for Raw and Silver tiers.
-- **Transformation (B->S):** AWS Lambda for serverless, event-driven processing (CSV to Parquet).
-  - **Logic:** Dynamic Schema (Wide Table), snake_case normalization, removal of special characters (e.g., '%', ' (C)'), and identity fallback (`farm_id` as `sensor_id` if missing).
-  - **Deduplication:** Uses `sensor_id` + `timestamp` + `reading_id` to ensure idempotency.
-- **Transformation (S->G):** AWS Athena for serverless SQL and dbt (Data Build Tool) for logic management.
+- **Ingestion:** Python (boto3) con validación de configuración vía **Pydantic**.
+- **Storage:** AWS S3 con particionamiento Hive-style.
+- **Transformation (B->S):** AWS Lambda (awswrangler).
+  - **Schema-Agnostic:** Limpieza de nombres a `snake_case` y conversión automática de métricas.
+  - **Partitioning:** Los datos en Silver se guardan particionados por `year`, `month` y `day` extraídos del `timestamp` original.
+  - **Standardization:** Conversión automática de unidades (ej. Fahrenheit a Celsius).
+- **Observability:** Logs estructurados en formato **JSON** para integración nativa con CloudWatch.
 
-## 3. Best Practices
-### Partitioning
-To optimize query cost and performance in Athena, data is stored using Hive-style partitioning:
-`s3://my-bucket/bronze/sensor_data/year=YYYY/month=MM/day=DD/`
-The Lambda function maintains this partitioning in the Silver layer.
+## 3. Engineering Standards & Best Practices
 
-### Idempotency
-Pipeline runs are designed to be repeatable. Running an ingestion script twice should result in the same final state without duplicates.
+### CI/CD & Quality
+- **Linting & Formatting:** Se utiliza **Ruff** para mantener la consistencia del código.
+- **Type Checking:** Uso estricto de **Mypy** con stubs para pandas y pydantic.
+- **Automated Testing:** Pipeline de GitHub Actions que valida cada cambio antes del merge a `main`.
+
+### Partitioning & Performance
+Para optimizar costos y velocidad en Athena, todas las capas utilizan particionamiento Hive-style:
+`s3://bucket/tier/table/year=YYYY/month=MM/day=DD/`
+Esto permite que Athena realice "Partition Pruning", leyendo solo los datos necesarios.
+
+### Configuration Management
+La configuración no es un simple diccionario; es un objeto validado por **Pydantic**. Esto garantiza que si falta una variable de entorno o un path en el YAML, el error se detecta en milisegundos al iniciar la aplicación.
 
 ### Environment Management
-- All secrets (AWS Keys) are stored in a `.env` file (never committed).
-- Local data for development is kept in `data/input` and `data/output` (ignored by Git).
-
-### Schema Evolution
-Transformations must handle changes in sensor firmware (e.g., added/removed columns) without breaking the entire downstream pipeline.
+- Secrets via `.env`.
+- Dependencias gestionadas por `uv` para instalaciones ultra-rápidas y reproducibles.

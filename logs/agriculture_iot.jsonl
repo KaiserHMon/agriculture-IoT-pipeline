@@ -1,0 +1,8 @@
+{"asctime": "2026-04-06T20:57:38Z", "levelname": "INFO", "name": "agriculture_iot", "message": "Found 1 files to upload."}
+{"asctime": "2026-04-06T20:57:38Z", "levelname": "INFO", "name": "agriculture_iot", "message": "Successfully uploaded data_2024.csv to bronze/test/year=2024/month=03/day=30/data_2024.csv"}
+{"asctime": "2026-04-06T20:57:38Z", "levelname": "INFO", "name": "agriculture_iot", "message": "Moved data_2024.csv to C:\\Users\\ASUS\\AppData\\Local\\Temp\\pytest-of-SegundoHardoy\\pytest-1\\test_ingestion_upload_and_move0\\processed"}
+{"asctime": "2026-04-06T20:57:38Z", "levelname": "INFO", "name": "agriculture_iot", "message": "No new files found in C:\\Users\\ASUS\\AppData\\Local\\Temp\\pytest-of-SegundoHardoy\\pytest-1\\test_ingestion_no_files0\\input to upload."}
+{"asctime": "2026-04-06T20:59:00Z", "levelname": "INFO", "name": "agriculture_iot", "message": "Found 1 files to upload."}
+{"asctime": "2026-04-06T20:59:00Z", "levelname": "INFO", "name": "agriculture_iot", "message": "Successfully uploaded data_2024.csv to bronze/test/year=2024/month=03/day=30/data_2024.csv"}
+{"asctime": "2026-04-06T20:59:00Z", "levelname": "INFO", "name": "agriculture_iot", "message": "Moved data_2024.csv to C:\\Users\\ASUS\\AppData\\Local\\Temp\\pytest-of-SegundoHardoy\\pytest-2\\test_ingestion_upload_and_move0\\processed"}
+{"asctime": "2026-04-06T20:59:00Z", "levelname": "INFO", "name": "agriculture_iot", "message": "No new files found in C:\\Users\\ASUS\\AppData\\Local\\Temp\\pytest-of-SegundoHardoy\\pytest-2\\test_ingestion_no_files0\\input to upload."}

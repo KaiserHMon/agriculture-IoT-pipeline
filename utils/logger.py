@@ -1,42 +1,44 @@
 import logging
 import os
-from datetime import datetime
 from logging.handlers import RotatingFileHandler
+from pythonjsonlogger import jsonlogger
+
 
 def setup_logger(name="agriculture_iot", log_dir="logs"):
     """
-    Configura un logger que escribe tanto en consola como en un archivo rotativo.
+    Configures a JSON logger for both console and a rotating file.
+    This is ideal for CloudWatch and automated log aggregation.
     """
-    # Crear directorio de logs si no existe
     os.makedirs(log_dir, exist_ok=True)
-    
+
     logger = logging.getLogger(name)
     logger.setLevel(logging.INFO)
-    
-    # Evitar duplicados si el logger ya está configurado
+
+    # Avoid duplicate handlers
     if logger.handlers:
         return logger
 
-    # Formato del log
-    formatter = logging.Formatter(
-        "%(asctime)s - %(name)s - %(levelname)s - %(message)s",
-        datefmt="%Y-%m-%d %H:%M:%S"
+    # JSON Formatter
+    # We include timestamp, level, name, and message as standard
+    formatter = jsonlogger.JsonFormatter(
+        "%(asctime)s %(levelname)s %(name)s %(message)s", datefmt="%Y-%m-%dT%H:%M:%SZ"
     )
 
-    # Handler para Consola
+    # Console Handler
     console_handler = logging.StreamHandler()
     console_handler.setFormatter(formatter)
     logger.addHandler(console_handler)
 
-    # Handler para Archivo (Rotativo: 5MB por archivo, máximo 5 archivos)
-    log_filename = os.path.join(log_dir, f"{name}_{datetime.now().strftime('%Y%m%d')}.log")
+    # File Handler
+    log_filename = os.path.join(log_dir, f"{name}.jsonl")
     file_handler = RotatingFileHandler(
-        log_filename, maxBytes=5*1024*1024, backupCount=5, encoding="utf-8"
+        log_filename, maxBytes=10 * 1024 * 1024, backupCount=5, encoding="utf-8"
     )
     file_handler.setFormatter(formatter)
     logger.addHandler(file_handler)
 
     return logger
 
-# Instancia global para fácil acceso
+
+# Global instance for easy access
 logger = setup_logger()

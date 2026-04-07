@@ -11,10 +11,11 @@ This document serves as the project memory and roadmap for future Gemini CLI ses
 - **Cloud:** AWS (S3, Lambda, Glue, Athena)
 - **Transformation (B->S):** AWS Lambda (Python + awswrangler) - *Schema-Agnostic Wide Table Approach*.
 - **Transformation (S->G):** dbt (Data Build Tool) + Athena.
+- **Quality & Ops:** Ruff (Linting), Mypy (Types), GitHub Actions (CI), Pydantic (Config Validation), JSON Logging.
 
 ## 🏗️ Architecture (Medallion Pattern)
-- **Bronze (Raw):** Landing zone en S3 (`segundohardoy-data-raw-...`) para CSV y XLSX.
-- **Silver (Cleaned):** Transformación mediante **AWS Lambda** a formato Parquet (Snappy). Soporta "Wide Tables" para capturar múltiples métricas (pH, humedad, etc.) dinámicamente.
+- **Bronze (Raw):** Landing zone en S3 para CSV y XLSX. Particionado por fecha (`year/month/day`).
+- **Silver (Cleaned):** Transformación mediante **AWS Lambda** a formato Parquet (Snappy). Mantiene el particionamiento por fecha y soporta "Wide Tables".
 - **Gold (Curated):** ML-ready agregados usando dbt sobre Athena.
 
 ## 🚀 Key Decisions
@@ -22,25 +23,24 @@ This document serves as the project memory and roadmap for future Gemini CLI ses
 Se implementó una lógica flexible en la Lambda que limpia nombres de columnas (snake_case) y acepta cualquier métrica numérica, evitando fallos por cambios en el origen.
 
 ### 2. Data Identity Requirement
-Se decidió procesar únicamente archivos con identificadores claros (`sensor_id` o `farm_id`). Archivos sin identidad estructural (ej. Excel simples de una sola métrica sin ID) fueron excluidos para mantener la integridad del Data Lake.
+Se decidió procesar únicamente archivos con identificadores claros (`sensor_id` o `farm_id`).
 
-### 3. Resource Optimization
-La Lambda fue optimizada a **512MB RAM** y **60s Timeout** para manejar la carga inicial de `awswrangler` y el procesamiento de archivos Excel pesados.
+### 3. Incremental & Partitioned Processing
+Tanto la capa Bronze como la Silver están particionadas por `year`, `month` y `day` extraídos del `timestamp` del dato, optimizando costos de Athena y permitiendo procesamiento incremental.
 
-
-### 2. Configuration & Security
-- **`.env` (Mandatory):** Stores sensitive credentials: `AWS_ACCESS_KEY_ID`, `AWS_SECRET_ACCESS_KEY`, and `AWS_S3_BUCKET` (prevents exposing Account ID).
-- **`config/settings.yaml`:** Stores non-sensitive paths, prefixes, and date column names for ingestion.
-
-### 3. File Management & Docker
-The `ingestion/raw_to_bronze.py` script automatically moves successfully uploaded files from `data/input/` to `data/processed/`. The Docker setup mounts these folders to ensure data persistence between runs.
+### 4. Configuration & Security
+- **Pydantic Validation:** La configuración (`settings.yaml`) se valida mediante modelos de Pydantic al inicio de la ejecución.
+- **Structured Logging:** Se utiliza `python-json-logger` para emitir logs en formato JSON, facilitando la observabilidad en CloudWatch.
+- **CI/CD:** Pipeline en GitHub Actions que ejecuta tests, Ruff y Mypy en cada Pull Request.
 
 ## 🧪 Current Status
 - [x] S3 Client wrapper (`utils/s3_client.py`).
-- [x] Configuration centralized (`config/settings.yaml`).
+- [x] Configuration with Pydantic validation (`utils/config.py`).
+- [x] Structured JSON Logging (`utils/logger.py`).
 - [x] Ingestion script with smart partitioning (`ingestion/raw_to_bronze.py`).
-- [x] Unit tests for date extraction logic (`tests/test_date_extraction.py`).
-- [x] Dockerization (Dockerfile & Docker Compose).
+- [x] Silver Transformation with date partitioning (`transformation/bronze_to_silver.py`).
+- [x] CI/CD Pipeline (GitHub Actions + pre-commit).
+- [x] Unit tests for ingestion and transformation logic.
 
 ## 🔜 Next Steps
 See [NEXT_STEPS.md](./NEXT_STEPS.md) for a detailed roadmap.
